@@ -22,10 +22,9 @@ stages:
     - bash: echo $(Build.BuildNumber)
     - bash: echo $(Build.BuildId)
     - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Build.SourceDirectory)
+    - bash: echo $(Build.SourcesDirectory)
     - bash: echo $(System.DefaultWorkingDirectory)
-    - bash: echo $(Build.DefaultWorkingDirectory)
-    - bash: echo ls -R $(Build.DefaultWorkingDirectory)
+    - bash: echo ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifactStagingDirectory)
 # - stage: DevDeploy
 #   dependsOn: Build
