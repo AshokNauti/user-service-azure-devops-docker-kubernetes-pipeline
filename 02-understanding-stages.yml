@@ -17,33 +17,42 @@ stages:
     - bash: echo Build Firstjob
   - job: SecondJob
     steps:
-    - bash: echo Build SecondJob    
-- stage: DevDeploy
-  dependsOn: Build
-  jobs:
-  - job: FirstDevJob
-    steps:
-    - bash: echo Build FirstDevjob
-  - job: SecondDevJob
-    steps:
-    - bash: echo Build SecondDevJob
-- stage: QADeploy
-  dependsOn: Build
-  jobs:
-  - job: FirstQAJob
-    steps:
-    - bash: echo Build FirstQAjob
-  - job: SecondQAJob
-    steps:
-    - bash: echo Build SecondQAJob
-- stage: ProdDeploy
-  dependsOn: 
-  - DevDeploy
-  - QADeploy
-  jobs:
-  - job: FirstProdJob
-    steps:
-    - bash: echo Build FirstProdjob
-  - job: SecondProdJob
-    steps:
-    - bash: echo Build SecondProdJob
+    - bash: echo Build SecondJob
+    - bash: echo $(PipelineLevelVariable)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(Build.SourceBranchName)
+    - bash: echo $(Build.SourceDirectory)
+    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.DefaultWorkingDirectory)
+    - bash: echo ls -R $(Build.DefaultWorkingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
+# - stage: DevDeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: FirstDevJob
+#     steps:
+#     - bash: echo Build FirstDevjob
+#   - job: SecondDevJob
+#     steps:
+#     - bash: echo Build SecondDevJob
+# - stage: QADeploy
+#   dependsOn: Build
+#   jobs:
+#   - job: FirstQAJob
+#     steps:
+#     - bash: echo Build FirstQAjob
+#   - job: SecondQAJob
+#     steps:
+#     - bash: echo Build SecondQAJob
+# - stage: ProdDeploy
+#   dependsOn: 
+#   - DevDeploy
+#   - QADeploy
+#   jobs:
+#   - job: FirstProdJob
+#     steps:
+#     - bash: echo Build FirstProdjob
+#   - job: SecondProdJob
+#     steps:
+#     - bash: echo Build SecondProdJob
